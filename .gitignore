@@ -1,0 +1,30 @@
+# Ignore system-specific files
+.dockerignore
+.env
+
+# Ignore Docker image and container artifacts
+*.log
+*.pot
+*.pid
+*.s[ho]
+
+# Ignore Docker Compose files
+docker-compose.override.yml
+docker-compose.override.yml.example
+
+# Ignore build artifacts
+*.swp
+*.swo
+.DS_Store
+npm-debug.log
+
+# Ignore logs and temporary files
+logs/
+tmp/
+
+# Ignore JetBrains IDE files
+.idea/
+*.iml
+
+# Ignore Visual Studio Code files
+.vscode/
