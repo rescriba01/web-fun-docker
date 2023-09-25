@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+  # Database (MySQL)
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+    networks:
+      - mynetwork
+
+  # PHP Application (Vanilla PHP)
+  php-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '8000:80'
+    restart: always
+    volumes:
+      - ./php-app:/var/www/html
+    networks:
+      - mynetwork
+
+  # Laravel Application (Optional)
+  laravel-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '8001:80'  # Choose a different port for Laravel if needed
+    restart: always
+    volumes:
+      - ./laravel-app:/var/www/html
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+
+volumes:
+  db_data:
